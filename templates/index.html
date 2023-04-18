@@ -1,0 +1,74 @@
+{% extends 'base.html'  %}
+{% block header %} 
+{% block title %} Bosh sahifa {% endblock title %}
+{% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ice Cream Site</title>
+</head>
+<body>
+    
+	<h1 class="text-center text-primary">'IceCream Site'ga xush kelibsiz!</h1>
+	<h2>Muzqaymoq turlari:</h2>
+	<ul>
+	{% for flavor in flavors %}
+		<li>{{ flavor }}</li>
+	{% endfor %}
+	</ul>
+	
+	<h2>Images and Data:</h2>
+	
+    <section>
+		
+		  <div class="card-group">
+			<div class="card">
+			  <img src="{{ url_for('static', filename='/src/images/chocolate.jpg') }}" class="card-img-top" alt="...">
+			  <div class="card-body">
+				<h5 class="card-title text-center">Shokoladli Muzqaymoq</h5>
+				<p class="card-text">Haqiqiy shokoladli muzqaymoq - bolalikdan beri eng sevimli va mazali shirinliklardan biri.</p>
+			  </div>
+			  <div class="card-footer text-center">
+				<small class="text-muted">Turkum:Shokolad</small>
+			  </div>
+			</div>
+			<div class="card">
+			  <img src="{{ url_for('static', filename='/src/images/vanilla1.jpg') }}" class="card-img-top" alt="...">
+			  <div class="card-body">
+				<h5 class="card-title text-center">Vanilli Muzqaymoq</h5>
+				<p class="card-text">Vanilli muzqaymoq, muzqaymoqning boshqa lazzatlari kabi, dastlab qaymoq, shakar va vanil aralashmasini muz va tuz idishi ustida sovutish orqali yaratilgan. Muzqaymoqdan lazzatlanish uchun ishlatiladigan vanil turi joylashuvga qarab farq qiladi.</p>
+			  </div>
+			  <div class="card-footer text-center">
+				<small class="text-muted">Turkum: Vanilli</small>
+			  </div>
+			</div>
+			<div class="card">
+			  <img src="{{ url_for('static', filename='/src/images/strawberry.jpg') }}" class="card-img-top" alt="...">
+			  <div class="card-body">
+				<h5 class="card-title text-center">Qulupnayli muzqaymoq</h5>
+				<p class="card-text">Semifredo – ham sufle, ham muzqaymoqqa o’xshab ketadigan italyancha muzqaymoq bo’lib, oddiy masalliqlardan tayyorlaniladi. Shirinlikni sevib iste’mol qiluvchilar uchun jazirama kunlarda bunday muzqaymoq ayni muddao bo’lishi aniq.</p>
+			  </div>
+			  <div class="card-footer text-center">
+				<small class="text-muted">Turkum: Qulupnayli</small>
+			  </div>
+			</div>
+		  </div>
+        
+        
+    </section>
+
+</body>
+</html>
+
+{% endblock content %}
+  
+
+ <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
+</body>
+</html>
