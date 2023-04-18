@@ -1,0 +1,118 @@
+{% extends 'base.html'  %}
+{% block header %} 
+{% block title %} Mahsulotlar {% endblock title %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-header text-center"><h4><i class=''></i> Mahsulotlar</h4></div>
+            <div class="card-body">
+            <table class="table hover">
+                <tr>
+                    <th>ID</th>
+                    <th>Nomi</th>
+                    <th>Narxi</th>
+                </tr>
+                {% for row in ice_cream %}
+                <tr>
+                    <td>{{row.0}}</td>
+                    <td><a href="/calc_product/{{row.0}}">{{row.1}}</a></td>
+                    <td>{{row.2}}</td>
+                </tr>
+                
+                {% endfor %}
+        
+            </table>    
+            </div>
+        </div>   
+    </div>
+
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header text-center"><h4><i class=''></i>Mahsulot ma'lumotlari</h4></div>
+            <div class="card-body">
+                <form>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" style="width: 230px;"><i class=""></i> Nomi</span>
+                      </div>
+                      <input type="text" class="form-control"  placeholder="..." value="{{data.1}} - {{data.2}}" disabled="true" autocomplete="off" required>
+                      <input type="hidden" value="{{data.3}}" id="price">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" style="width: 230px;"><i class=""></i> Ishlab chiqarilgan sana</span>
+                        </div>
+                        <input type="date" class="form-control" id="made_date" value="{{data.4}}" disabled="true" autocomplete="off" required>
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" style="width: 230px;"><i class=""></i>Saqlashning oxirgi muddati</span>
+                        </div>
+                        <input type="date" class="form-control" id="pull_date"   value="{{data.5}}"  disabled="true" autocomplete="off" required>
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" style="width: 230px;"><i class=""></i>Mahsulotning sqladdagi soni</span>
+                        </div>
+                        <input type="number" min="0" id="quantity"  class="form-control" placeholder="0" disabled value="{{data.6}}" autocomplete="off" required>
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" style="width: 230px;"><i class=""></i> Sotildi</span>
+                        </div>
+                        <input type="number" min="0"  max="{{data.6}}" id="count" onchange="CalcPrice()" class="form-control" placeholder="0" value=""  autocomplete="off" required>
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" style="width: 230px;"><i class=""></i> Mijoz</span>
+                        </div>
+                        <select class="form-control">
+                            {% for row in customers %}
+                            <option value="{{row.0}}">{{row.1}} - {{row.2}}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" style="width: 230px;"><i class=""></i>Mahsulotning umumiy narx</span>
+                        </div>
+                        <input type="text" id="net_price" disabled class="form-control" placeholder="0" value="0" autocomplete="off" required>
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" style="width: 230px;"><i class=""></i> QQS soliqi </span>
+                        </div>
+                        <input type="number" min="0" id="qqs" class="form-control" onchange="CalcPrice()" placeholder="0"  value=""  autocomplete="off" required>
+                      </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text"><i class=""></i>Umumiy narxi</span>
+                        </div>
+                        <input type="text"  id="total_price"  class="form-control"  value="0" disabled>
+                    </div>        
+                    <button type="button" class="btn btn-primary">Sotildi</button>
+                  </form>
+            </div>
+        </div> 
+    </div>
+</div>        
+<script>
+    function CalcPrice() {
+        var price=document.getElementById('price').value;
+        var count=document.getElementById('count').value;
+        var qqs=document.getElementById('qqs').value;
+        var net_price=document.getElementById('net_price');
+        var total_price=document.getElementById('total_price');
+        net_price.value=parseInt(price*count);
+        total_price.value=parseInt(net_price.value)+net_price.value*(qqs)/100;
+    }
+
+</script>
+
+{% endblock content %}
+
+</body>
+</html>
